@@ -18,6 +18,9 @@ defmodule PhoenixSample.Router do
 
     get "/", PageController, :index
     get "/hello", HelloController, :index
+
+    resources "/member", MemberController
+
   end
 
   # Other scopes may use custom stacks.
