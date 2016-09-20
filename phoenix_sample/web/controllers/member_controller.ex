@@ -5,7 +5,8 @@ defmodule PhoenixSample.MemberController do
 
   def index(conn, _params) do
     members = Repo.all(Member)
-    render(conn, "index.html", members: members)
+    message = "たぢ"
+    render(conn, "index.html", members: members, msg: message)
   end
 
   def new(conn, _params) do

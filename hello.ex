@@ -11,5 +11,10 @@ defmodule Hello do
   def greet2 do
     IO.puts("こんばんはBBBBB");
   end
+
+  def func_test do
+    IO.puts "Hello!!"
+  end
+
 end
 

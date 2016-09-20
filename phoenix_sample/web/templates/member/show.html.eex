@@ -3,6 +3,10 @@
 <ul>
 
   <li>
+    <strong>ID:</strong>
+    <%= @member.id %>
+  </li>
+  <li>
     <strong>Last name:</strong>
     <%= @member.last_name %>
   </li>
@@ -21,6 +25,7 @@
     <strong>Passwd:</strong>
     <%= @member.passwd %>
   </li>
+
 
 </ul>
 
