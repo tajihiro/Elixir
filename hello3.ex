@@ -1,0 +1,1 @@
+IO.puts "Hello Elixir 3 Script!!"
