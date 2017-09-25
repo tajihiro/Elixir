@@ -1,0 +1,4 @@
+%{"excelion": {:hex, :excelion, "0.0.3", "7fb7f19a8264a79782dcdce2edbf1d06dcfadccc3c71cb1bd2eae1cc4e70756d", [:mix], [{:xlsx_parser, "~> 0.0.8", [hex: :xlsx_parser, repo: "hexpm", optional: false]}], "hexpm"},
+  "simple_agent": {:hex, :simple_agent, "0.0.7", "5ca589f432467cb682103159588a8e69dda029ffc5163cd6c872a023004ead14", [:mix], [], "hexpm"},
+  "sweet_xml": {:hex, :sweet_xml, "0.6.5", "dd9cde443212b505d1b5f9758feb2000e66a14d3c449f04c572f3048c66e6697", [:mix], [], "hexpm"},
+  "xlsx_parser": {:hex, :xlsx_parser, "0.0.10", "0fcdfd3fa40a440d03b8ed7e5acbc8613cf752381800e8d91d3875c68484fe84", [:mix], [{:simple_agent, "~> 0.0.7", [hex: :simple_agent, repo: "hexpm", optional: false]}, {:sweet_xml, "~> 0.6.1", [hex: :sweet_xml, repo: "hexpm", optional: false]}], "hexpm"}}

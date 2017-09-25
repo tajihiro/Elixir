@@ -1,0 +1,5 @@
+:io.format("~.2f~n", [2.0/3.0])
+IO.inspect(System.get_env("HOME"))
+IO.inspect(Path.extname("dave/text.exs"))
+IO.inspect(System.cwd)
+IO.inspect(System.cmd("date",[]))
