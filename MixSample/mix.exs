@@ -4,7 +4,7 @@ defmodule MixSample.Mixfile do
   def project do
     [app: :mix_sample,
      version: "0.1.0",
-     elixir: "~> 1.4",
+     elixir: "~> 1.6",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps()]
@@ -28,6 +28,7 @@ defmodule MixSample.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:excelion, "~> 0.0.3"}]
+    [{:excelion, "~> 0.0.3"},
+    {:timex, "~> 3.1"}]
   end
 end
