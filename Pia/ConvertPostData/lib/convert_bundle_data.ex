@@ -1,5 +1,8 @@
 defmodule ConvertBundleData do
+  use Timex
   def convert do
+    start_at = Timex.now("Asia/Tokyo")
+    IO.puts "START : " <> Timex.format!(start_at, "%Y/%m/%d %H:%M:%S", :strftime)
     headers = [:bundle_id, :country, :request_id, :ticket_no, :first_name_en, :last_name_en, :last_name_kj, :first_name_kj,
       :account_id, :remark_01_ja, :remark_01_en, :remark_02_ja, :remark_02_en, :product_name_en, :product_name_ja, :price,
       :seat, :row, :level, :entrance, :gate, :venue, :seat_info,
@@ -8,12 +11,18 @@ defmodule ConvertBundleData do
       :postal_cd_02, :tel01, :tel02, :email, :vat, :product_id, :product_id_02, :sort_id, :product_name]
       out_file = "C:\\Works\\TASKS\\20190426_PrintTicketsBundleData\\output\\RWC2019_B_yyyymmdd.tsv"
       result = "C:\\Works\\TASKS\\20190426_PrintTicketsBundleData\\input\\bdl_merged.tsv"
+#      out_file = "./output/RWC2019_B_yyyymmdd.tsv"
+#      result = "./input/bdl_merged.tsv"
                |> File.stream!
                |> CSV.decode(separator: ?\t, headers: headers)
                |> Enum.map(&(elem(&1, 1)))
                |> Enum.group_by(&{&1.request_id, &1.ticket_no})
                |> Enum.map(&(format_data(&1)))
       File.write(out_file, result)
+    end_at = Timex.now("Asia/Tokyo")
+    total_time = DateTime.diff(start_at, end_at)
+    IO.puts Float.to_string(total_time / (60 * 60 * 60)) <> " min"
+    IO.puts "END : " <> Timex.format!(end_at, "%Y/%m/%d %H:%M:%S", :strftime)
   end
 
   defp price_check(price) when is_nil(price), do: 0
