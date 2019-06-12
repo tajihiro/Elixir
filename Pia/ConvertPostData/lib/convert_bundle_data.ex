@@ -2,6 +2,7 @@ defmodule ConvertBundleData do
   use Timex
   def convert do
     start_at = Timex.now("Asia/Tokyo")
+    format_date = Timex.format!(start_at, "%Y%m%d", :strftime)
     IO.puts "START : " <> Timex.format!(start_at, "%Y/%m/%d %H:%M:%S", :strftime)
     headers = [:bundle_id, :country, :request_id, :ticket_no, :first_name_en, :last_name_en, :last_name_kj, :first_name_kj,
       :account_id, :remark_01_ja, :remark_01_en, :remark_02_ja, :remark_02_en, :product_name_en, :product_name_ja, :price,
@@ -9,7 +10,7 @@ defmodule ConvertBundleData do
       :postal_cd_01, :building_01, :street_01, :city_01, :prefecture_01, :full_name_en_01, :full_name_en_02,
       :building_02, :street_02, :city_02, :country_cd, :city_03, :prefecture_02,
       :postal_cd_02, :tel01, :tel02, :email, :vat, :product_id, :product_id_02, :sort_id, :product_name]
-      out_file = "C:\\Works\\TASKS\\20190426_PrintTicketsBundleData\\output\\RWC2019_B_yyyymmdd.tsv"
+      out_file = "C:\\Works\\TASKS\\20190426_PrintTicketsBundleData\\output\\RWC2019_B_" <> format_date <> ".tsv"
       result = "C:\\Works\\TASKS\\20190426_PrintTicketsBundleData\\input\\bdl_merged.tsv"
 #      out_file = "./output/RWC2019_B_yyyymmdd.tsv"
 #      result = "./input/bdl_merged.tsv"
