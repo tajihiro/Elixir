@@ -10,23 +10,25 @@ defmodule ConvertBundleData do
       :postal_cd_01, :building_01, :street_01, :city_01, :prefecture_01, :full_name_en_01, :full_name_en_02,
       :building_02, :street_02, :city_02, :country_cd, :city_03, :prefecture_02,
       :postal_cd_02, :tel01, :tel02, :email, :vat, :product_id, :product_id_02, :sort_id, :product_name]
-#      out_file = "C:\\Works\\TASKS\\20190426_PrintTicketsBundleData\\output\\RWC2019_B_" <> format_date <> ".tsv"
-#      result = "C:\\Works\\TASKS\\20190426_PrintTicketsBundleData\\input\\bdl_merged.tsv"
-      out_file = "./output/RWC2019_B_" <> format_date <> ".tsv"
-      result = "./input/bdl_merged.tsv"
+      out_file = "C:\\Works\\TASKS\\20190426_PrintTicketsBundleData\\output\\RWC2019_B_" <> format_date <> ".tsv"
+      result = "C:\\Works\\TASKS\\20190426_PrintTicketsBundleData\\input\\bdl_merged.tsv"
+#      out_file = "./output/RWC2019_B_" <> format_date <> ".tsv"
+#      result = "./input/bdl_merged.tsv"
                |> File.stream!
                |> CSV.decode(separator: ?\t, headers: headers)
-#               |> Flow.from_enumerable()
-#               |> Flow.map(&(elem(&1, 1)))
-#               |> Flow.group_by(&{&1.request_id, &1.ticket_no})
-#               |> Flow.map(&(format_data(&1)))
-               |> Enum.map(&(elem(&1, 1)))
-               |> Enum.group_by(&{&1.request_id, &1.ticket_no})
-               |> Enum.map(&(format_data(&1)))
+#               |> NimbleCSV.RFC4180.parse_stream()
+               |> Flow.from_enumerable(stages: 1)
+               |> Flow.map(&(elem(&1, 1)))
+               |> Flow.group_by(&{&1.request_id, &1.ticket_no})
+               |> Flow.map(&(format_data(&1)))
+               |> Enum.to_list()
+#               |> Enum.map(&(elem(&1, 1)))
+#               |> Enum.group_by(&{&1.request_id, &1.ticket_no})
+#               |> Enum.map(&(format_data(&1)))
       File.write(out_file, result)
     end_at = Timex.now("Asia/Tokyo")
-    total_time = DateTime.diff(start_at, end_at)
-    IO.puts Float.to_string(total_time / (60 * 60 * 60)) <> " min"
+    total_time = DateTime.diff(end_at, start_at)
+    IO.puts "It tooks " <> Integer.to_string(total_time) <> " minutes."
     IO.puts "END : " <> Timex.format!(end_at, "%Y/%m/%d %H:%M:%S", :strftime)
   end
 
